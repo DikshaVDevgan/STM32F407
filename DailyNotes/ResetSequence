@@ -1,0 +1,8 @@
+1. when microcontroller is reset using reset button or power, processor reads value at address 0x00000000 and set MSP to value stored at 0x00000000.
+2. So, MSP = value(@0x00000000)
+3. it then reads address 0x00000004, that is the address of reset_handler.
+4. Stores the value at 0x00000004, to PC, which is the address of reset_handler. 
+5. Reset_handler is the first function called by the processor on reset, and it does some basic initializatoins, before calling main().
+
+Question: what does MSP do with the value set at reset?
+

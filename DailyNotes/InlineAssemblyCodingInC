@@ -1,0 +1,37 @@
+1. Used to write assembly instruction inside C Program.
+2. e.g. __asm volatile("MOV R1,R2");
+
+__asm or asm: tells the compiler for assembly instruction.
+volatile(optional): to instruct the compiler not to optimize this inline code.
+
+ways to provide assembly instructions:
+__asm volatile("LDR R0, R1");
+__asm volatile("LDR R0, R1");
+
+or 
+
+__asm volatile("LDR R0, R1\n\t"
+		"LDR R1, R2\n\t);
+
+format:
+__asm volatile(code:output_operand list: input_operand list: clobber list);
+
+contraint string = constarint character + constraint modifier
+"<contraint string>" (<'C' expression>)
+
+example: move the content of 'C' variable 'val' to R0
+
+__asm volatile("MOV R0, %0" : : "r" (val));
+
+
+example: move the content of CONTROL register to 'C' variable 'val'
+
+__asm volatile("MRS %0, CONTROL": "=r"(val): :);
+
+example: copy the content of 'C' variable var1 to var2
+
+__asm volatile("MOV %0 %1": "=r"(var2): "r"(var1));
+
+example: copy the contents of a pointer(p2) to var1
+
+__asm volatile("LDR %0 [%1]: "=r"(var1): "r"(p2));

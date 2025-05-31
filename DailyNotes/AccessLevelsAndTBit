@@ -1,0 +1,22 @@
+2 types of access levels:
+Unprivilged Mode
+Priviliged Mode
+
+2 types of modes:
+Thread Mode
+User Mode
+
+
+By default when code is executed, it run in Thread mode and in priviliged mode.
+One can switch to Priviliged mode, by changing the CONTROL register using assembly instruction (as it is not a memory mapped regiter).
+But cannot modify CONTROL register in unprivliged mode, so cannot come back to priviliged mode.
+So, to do that an interrupt has to generate, so processor is in priviliged mode (interrupts always executed in priliviged mode) like SVC. When handling that interrupt, 
+CONTROL register value can be changed to priviliged mode again.
+Execptions/interruts will always be handled in priviliged mode. 
+
+
+
+T bit EPSR:
+ARM Cortex M only support Thumb instrutions or mix of Thumb and ARM instructions. that is 16-bit instruction set, which is ideal for memory constarined systems.
+T bit in EPSR means that Thumb instruction is there in PC. In Cortex M, if T bit in EPSR is not 1, hard fault will be there. 
+  
